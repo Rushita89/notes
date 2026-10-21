@@ -12,6 +12,9 @@ on:
       - master
       - develop
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Android APK
@@ -25,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '25'
+          java-version: '17'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -51,4 +54,4 @@ jobs:
           tag: "v1.0.${{ github.run_number }}"
           name: "Android Release v1.0.${{ github.run_number }}"
           body: "Android APK release build."
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
